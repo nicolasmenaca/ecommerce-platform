@@ -39,16 +39,21 @@ public class productController {
 	        throw e; // Re-lanzamos la excepción para que Spring la maneje
 		}
 	}
-	
-	//falta crear el metodo de crear un producto
-	
-	/*@GetMapping("/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) {
-		Product product = productService.getProductById(id);
-		if (product != null) {
-			return new ResponseEntity<>(product, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		try {
+			Product product = productService.getProductById(id);
+			if (product != null) {
+				return new ResponseEntity<>(product, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		} catch (Exception e) {
+			System.err.println("Error al procesar la solicitud: " + e.getMessage());
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	}*/
+	}
 }
+
+

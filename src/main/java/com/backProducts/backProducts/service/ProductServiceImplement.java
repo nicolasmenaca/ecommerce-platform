@@ -19,8 +19,13 @@ public class ProductServiceImplement implements ProductService {
 	    System.out.println("Productos recuperados del repositorio: " + products);
         return products;
     }
-	
-    @Override
+
+	@Override
+	public Product getProductById(Long id) {
+		return null;
+	}
+
+	@Override
     public Product newProduct(Product newProduct) {
         // Lógica para agregar un nuevo producto
     	try {

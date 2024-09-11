@@ -7,4 +7,5 @@ public interface ProductService {
 	Product newProduct(Product newProduct);
 	Iterable<Product> getAllProducts();
 
+	Product getProductById(Long id);
 }
