@@ -8,10 +8,10 @@
 		<version>3.2.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.backProducts</groupId>
-	<artifactId>backProducts</artifactId>
+	<groupId>com.ecommerce</groupId>
+	<artifactId>platform</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>backProducts</name>
+	<name>EcommercePlatform</name>
 	<description>servicio encargado de listar productos</description>
 	<properties>
 		<java.version>17</java.version>

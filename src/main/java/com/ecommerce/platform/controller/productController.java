@@ -1,4 +1,4 @@
-package com.backProducts.backProducts.controller;
+package com.ecommerce.platform.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backProducts.backProducts.model.Product;
-import com.backProducts.backProducts.service.ProductService;
+import com.ecommerce.platform.model.Product;
+import com.ecommerce.platform.service.ProductService;
 
 @RestController
 @RequestMapping("/api/products")
@@ -23,26 +23,26 @@ public class productController {
 	private ProductService productService;
 	
 	@GetMapping
-	public Iterable<Product> getAllProducts() {
-		Iterable<Product> products = productService.getAllProducts();
+	public Iterable<Product> listAllProducts() {
+		Iterable<Product> products = productService.listAllProducts();
 		System.out.println("Productos recuperados del servicio: " + products);
 		return products;
 	}
 	
 	@PostMapping("/newproduct")
-	public Product newProduct(@RequestBody Product newProduct) {
+	public Product createProduct(@RequestBody Product product) {
 		try {
-	        return this.productService.newProduct(newProduct);
+	        return this.productService.createProduct(product);
 		} catch (Exception e) {
 	        System.err.println("Error al procesar la solicitud: " + e.getMessage());
 	        e.printStackTrace();
-	        throw e; // Re-lanzamos la excepción para que Spring la maneje
+	        throw e;
 		}
 	}
 	@GetMapping("/{id}")
-	public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) {
+	public ResponseEntity<Product> retrieveProductById(@PathVariable("id") Long id) {
 		try {
-			Product product = productService.getProductById(id);
+			Product product = productService.retrieveProductById(id);
 			if (product != null) {
 				return new ResponseEntity<>(product, HttpStatus.OK);
 			} else {

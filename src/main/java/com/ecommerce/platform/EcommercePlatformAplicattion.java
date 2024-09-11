@@ -1,21 +1,19 @@
-package com.backProducts.backProducts;
+package com.ecommerce.platform;
 
-import com.backProducts.backProducts.model.Product;
-import com.backProducts.backProducts.repository.ProductRepository;
+import com.ecommerce.platform.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BackProductsApplication {
+public class EcommercePlatformAplicattion {
 
 
 	@Autowired
 	private static ProductRepository productRepository;
 
 	public static void main(String[] args) {
-		SpringApplication.run(BackProductsApplication.class, args);
+		SpringApplication.run(EcommercePlatformAplicattion.class, args);
 	}
 
 }

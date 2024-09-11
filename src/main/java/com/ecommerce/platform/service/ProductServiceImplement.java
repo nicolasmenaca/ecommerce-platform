@@ -1,10 +1,12 @@
-package com.backProducts.backProducts.service;
+package com.ecommerce.platform.service;
 
+import com.ecommerce.platform.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backProducts.backProducts.model.Product;
-import com.backProducts.backProducts.repository.ProductRepository;
+import com.ecommerce.platform.model.Product;
+
+import java.util.Optional;
 
 @Service
 public class ProductServiceImplement implements ProductService {
@@ -13,7 +15,7 @@ public class ProductServiceImplement implements ProductService {
     private ProductRepository productRepository; // Inyección del servicio
 
 	@Override
-    public Iterable<Product> getAllProducts() {
+    public Iterable<Product> listAllProducts() {
         // Lógica para obtener todos los productos
 		Iterable<Product> products = this.productRepository.findAll();
 	    System.out.println("Productos recuperados del repositorio: " + products);
@@ -21,15 +23,19 @@ public class ProductServiceImplement implements ProductService {
     }
 
 	@Override
-	public Product getProductById(Long id) {
-		return null;
+	public Product retrieveProductById(Long id) {
+		Optional<Product> product = productRepository.findById(id);
+		if (product.isPresent()) {
+			return product.get(); // Retorna el producto si está presente
+		} else {
+			return null; // Retorna null si no se encuentra el producto
+		}
 	}
-
 	@Override
-    public Product newProduct(Product newProduct) {
-        // Lógica para agregar un nuevo producto
+    public Product createProduct(Product product) {
+
     	try {
-    		return productRepository.save(newProduct);
+    		return productRepository.save(createProduct(product));
     	} catch (Exception e) {
     		e.printStackTrace(); // Imprime la traza de la excepción en la consola
             throw new RuntimeException("Error al guardar el nuevo producto en la base de datos");
