@@ -1,7 +1,8 @@
-package com.ecommerce.platform.service;
+package com.ecommerce.platform.Impl;
 
 import com.ecommerce.platform.model.Order;
 import com.ecommerce.platform.repository.OrderRepository;
+import com.ecommerce.platform.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

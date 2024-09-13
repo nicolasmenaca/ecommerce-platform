@@ -1,6 +1,7 @@
-package com.ecommerce.platform.service;
+package com.ecommerce.platform.Impl;
 
 import com.ecommerce.platform.repository.ProductRepository;
+import com.ecommerce.platform.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
