@@ -1,4 +1,4 @@
-package com.ecommerce.platform.Impl;
+package com.ecommerce.platform.service.Impl;
 
 import com.ecommerce.platform.repository.ProductRepository;
 import com.ecommerce.platform.service.ProductService;
@@ -36,7 +36,7 @@ public class ProductServiceImplement implements ProductService {
     public Product createProduct(Product product) {
 
     	try {
-    		return productRepository.save(createProduct(product));
+    		return productRepository.save(product);
     	} catch (Exception e) {
     		e.printStackTrace(); // Imprime la traza de la excepción en la consola
             throw new RuntimeException("Error al guardar el nuevo producto en la base de datos");

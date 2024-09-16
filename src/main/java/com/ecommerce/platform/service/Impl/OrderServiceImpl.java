@@ -1,4 +1,4 @@
-package com.ecommerce.platform.Impl;
+package com.ecommerce.platform.service.Impl;
 
 import com.ecommerce.platform.model.Order;
 import com.ecommerce.platform.repository.OrderRepository;

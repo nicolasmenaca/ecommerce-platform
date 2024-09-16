@@ -1,5 +1,6 @@
 package com.ecommerce.platform.controller;
 
+import com.ecommerce.platform.DTO.ProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,36 +23,31 @@ public class productController {
 	@Autowired
 	private ProductService productService;
 	
-	@GetMapping
-	public Iterable<Product> listAllProducts() {
-		Iterable<Product> products = productService.listAllProducts();
-		System.out.println("Productos recuperados del servicio: " + products);
-		return products;
+	@GetMapping("/list ")
+	public ResponseEntity<Iterable<Product>> listAllProducts() {
+		return ResponseEntity.ok(productService.listAllProducts());
 	}
 	
-	@PostMapping("/newproduct")
-	public Product createProduct(@RequestBody Product product) {
-		try {
-	        return this.productService.createProduct(product);
-		} catch (Exception e) {
-	        System.err.println("Error al procesar la solicitud: " + e.getMessage());
-	        e.printStackTrace();
-	        throw e;
-		}
+	@PostMapping("/create")
+	public ResponseEntity<Product> createProduct(@RequestBody ProductDto productDto) {
+		Product product = new Product();
+		product.setName(productDto.getName());
+		product.setCost(productDto.getCost());
+		product.setDetails(productDto.getDetails());
+		product.setImageUrl(productDto.getImageUrl());
+		product.setStock(productDto.getStock());
+
+		Product createdProduct =productService.createProduct(product);
+		return ResponseEntity.ok(createdProduct);
 	}
+
 	@GetMapping("/{id}")
-	public ResponseEntity<Product> retrieveProductById(@PathVariable("id") Long id) {
-		try {
-			Product product = productService.retrieveProductById(id);
-			if (product != null) {
-				return new ResponseEntity<>(product, HttpStatus.OK);
-			} else {
-				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			}
-		} catch (Exception e) {
-			System.err.println("Error al procesar la solicitud: " + e.getMessage());
-			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	public ResponseEntity<Product> retrieveProductById(@PathVariable Long id) {
+		Product product = productService.retrieveProductById(id);
+		if (product != null){
+			return ResponseEntity.ok(product);
+		}else {
+			return ResponseEntity.notFound().build();
 		}
 	}
 }
