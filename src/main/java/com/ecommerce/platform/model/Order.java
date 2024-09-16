@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "customer_order")
@@ -21,11 +23,14 @@ public class Order {
     private Long customerId; // ID del cliente que realizó la orden
 
     @Column(nullable = false)
-    private LocalDate orderDate; // Fecha de la orden
+    private Date orderDate; // Fecha de la orden
 
     @Column(nullable = false)
     private Double totalAmount; // Monto total de la orden
 
+    @JoinColumn()
+    @OneToMany
+    private List<Product> product;
     // Otros campos que consideres necesarios, como estado de la orden, dirección de envío, etc.
 }
 

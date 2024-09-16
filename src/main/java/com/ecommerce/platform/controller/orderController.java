@@ -1,6 +1,8 @@
 package com.ecommerce.platform.controller;
 
 import com.ecommerce.platform.DTO.OrderDto;
+import com.ecommerce.platform.DTO.RequestOrderDto;
+import com.ecommerce.platform.DTO.ResponseOrderDTO;
 import com.ecommerce.platform.model.Order;
 import com.ecommerce.platform.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +21,9 @@ public class orderController {
     private OrderService orderService;
 
     @PostMapping("/neworder")
-    public ResponseEntity<Order> createOrder(@RequestBody OrderDto orderDto) {
-        Order order = new Order();
-        order.setCustomerId((orderDto.getCustomerId()));
-        order.setOrderDate(orderDto.getOrderDate() != null ? orderDto.getOrderDate() : LocalDate.now());
-        order.setTotalAmount(orderDto.getTotalAmount());
-
-        Order savedOrder = orderService.createOrder(order);
-        return ResponseEntity.ok(savedOrder);
+    public ResponseOrderDTO createOrder(@RequestBody RequestOrderDto orderDto) {
+        ResponseOrderDTO responseOrderDTO = orderService.createOrder(orderDto);
+        return responseOrderDTO;
     }
 
     @GetMapping("/list")

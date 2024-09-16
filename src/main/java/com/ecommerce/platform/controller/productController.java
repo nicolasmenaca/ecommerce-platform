@@ -23,7 +23,7 @@ public class productController {
 	@Autowired
 	private ProductService productService;
 	
-	@GetMapping("/list ")
+	@GetMapping("/list")
 	public ResponseEntity<Iterable<Product>> listAllProducts() {
 		return ResponseEntity.ok(productService.listAllProducts());
 	}
