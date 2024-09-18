@@ -1,7 +1,7 @@
 package com.ecommerce.platform.service.Impl;
 
 import com.ecommerce.platform.DTO.ProductOrderDTO;
-import com.ecommerce.platform.DTO.RequestOrderDto;
+import com.ecommerce.platform.DTO.RequestOrderDTO;
 import com.ecommerce.platform.DTO.ResponseOrderDTO;
 import com.ecommerce.platform.model.Order;
 import com.ecommerce.platform.model.Product;
@@ -29,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public ResponseOrderDTO createOrder(RequestOrderDto order)  {
+    public ResponseOrderDTO createOrder(RequestOrderDTO order)  {
         List<Product> products = new ArrayList<>();
         Order oneOrder = new Order();
         Double totalVenta = 0.0;

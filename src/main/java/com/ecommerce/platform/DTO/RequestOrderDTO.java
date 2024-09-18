@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class RequestOrderDto {
+public class RequestOrderDTO {
     private String orderDate;
     private Long idCustomer;
     private List<ProductOrderDTO> listProducts;
